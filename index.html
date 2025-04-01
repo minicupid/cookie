@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0" />
+        <title> menu </title>
+        <link rel = "stylesheet" href = "style.css">
+        <link rel="icon" href="assets/choco.png">
+
+    </head>
+    <body>
+
+        <div class = "container">
+
+            <div class = "header">
+
+                <img 
+                draggable = "false"
+                src = "assets/cafeheader.jpg" alt = "cookie header">
+
+                <div class = "title">
+                    <h1> cookie shop </h1>
+                </div>
+                <div class = "subtitle">
+                    <p> enjoy these freshly baked cookies. customizable options coming soon! 🍪 </p>
+                </div>
+
+            </div>
+
+            <div class = "menu">
+                <h2> pick a cookie to munch on. </h2>
+                <div class = "item-container">
+
+                    <div class = "item">
+                        <div class = "box"> <img draggable = "false" src = "assets/choco.svg"> </div>
+                        <div class="text-container"> 
+                            <div class = "name"> choco chip </div>
+                            <div class = "desc"> a suspiciously smooth chocolate chip cookie with extra choco chunks. </div>
+                        </div>
+                    </div>
+
+                    <div class = "item">
+                        <div class = "box"> <img draggable = "false" src="assets/sugar.svg"> </div>
+                        <div class="text-container"> 
+                            <div class = "name"> sugar frost </div>
+                            <div class = "desc"> soft and sweet, this cookie will melt in your mouth after every bite. </div>
+                        </div>    
+                    </div>
+
+                    <div class = "item">
+                        <div class = "box"> <img draggable = "false" src="assets/oatmeal.svg"> </div>
+                        <div class="text-container"> 
+                            <div class = "name"> oatmeal crunch </div>
+                            <div class = "desc"> a lighter and healthier option that leaves you satisfied just as equally. </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                
+                
+            </div>
+
+            <div class = "purchase">
+                <div class = "thankyou"></div>
+                <div class = "return">
+                    <p> return to menu </p>
+                </div>
+                <div class = "cookieDisplay">
+                    <div class = "bagcontainer">
+                        <img draggable = "false" src = "assets/cookiebag.gif" >
+                    </div>
+                    <img draggable = "false" class = "cookieimg" src = "" >
+                </div>
+            </div>
+            
+            <audio id = "crunch" src = "assets/crunch.mp3"> </audio>
+
+            <audio id = "boop" src = "assets/boop.mp3"> </audio>
+
+            <audio id = "music" src = "assets/music.mp3" loop> </audio>
+
+        </div>
+
+        <div class = "bottom-container"> 
+
+            <button class = "receiptbutton" onclick = "showConsumed()"> <img src="assets/receipt.png" class="receipt-icon"> view receipt </button>
+    
+            <div class = "footer">
+                <p> ✉️ message : this is still an early version of the project ! </p>
+                <button class = "okbutton" onclick = "hideShow ()"> ok :] </button>
+            </div>
+            
+        </div>
+
+        <script src = "script.js"> </script>
+
+    </body>
+    
+</html>
