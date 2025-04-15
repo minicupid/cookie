@@ -2,9 +2,11 @@
     <head>
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width=device-width, initial-scale = 1.0" />
-        <title> menu </title>
+        <title> perfect cookie </title>
         <link rel = "stylesheet" href = "style.css">
-        <link rel="icon" href="assets/choco.png">
+        <link rel = "stylesheet" href = "https://use.typekit.net/tzs8vcb.css"> <!-- font-family: "hwt-mardell", sans-serif; -->
+        <link rel = "icon" href = "assets/choco.png">
+        
 
     </head>
     <body>
@@ -18,10 +20,10 @@
                 src = "assets/cafeheader.jpg" alt = "cookie header">
 
                 <div class = "title">
-                    <h1> cookie shop </h1>
+                    <h1> perfect cookie </h1>
                 </div>
                 <div class = "subtitle">
-                    <p> enjoy these freshly baked cookies. customizable options coming soon! 🍪 </p>
+                    <p> enjoy these freshly baked cookies. your satisfaction is not guaranteed! </p>
                 </div>
 
             </div>
@@ -62,28 +64,81 @@
 
             <div class = "purchase">
                 <div class = "thankyou"></div>
-                <div class = "return">
-                    <p> return to menu </p>
-                </div>
+
                 <div class = "cookieDisplay">
                     <div class = "bagcontainer">
-                        <img draggable = "false" src = "assets/cookiebag.gif" >
+                        <img draggable = "false" src = "assets/cookiebag.gif" loop >
                     </div>
                     <img draggable = "false" class = "cookieimg" src = "" >
                 </div>
             </div>
+
+<!-- stats ========== -->
+
+            <div class = "stats">
+
+                <div class = "receipt-container">
+                    <img draggable = "false" src = "assets/statsreceipt.svg" class = "statsreceipt">
+    
+                    <div class = "stats-container">
+                        <div class = "receipt-top">
+                            <p> ******** </p>
+                            <div class = "return"> back </div>
+                        </div>
+                        
+                        <div class = "receipt-middle">
+                            <div id = "cookiename">
+                                <p> cookie : &nbsp;</p>
+                                <p id = "cookiename_value"></p>
+                            </div>
+                            <div id = "satisfaction">
+                                <p> satisfaction : &nbsp;</p>
+                                <p id = "satisfaction_value"></p>
+                                <p> /10  </p>
+                            </div>
+                        </div>
+    
+                        <div class = "stats-data">
+                            <div id = "aroma">
+                                <p> aroma</p>
+                                <p id = "aroma_value"></p>
+                                <progress id = "aroma_progress" class = "progress" ></progress>
+                            </div>
+                            <div id = "crunch">
+                                <p> crunch</p>
+                                <p id = "crunch_value"></p>
+                                <progress id = "crunch_progress" class = "progress" ></progress>
+                            </div>
+                            <div id = "flavor">
+                                <p> flavor</p>
+                                <p id = "flavor_value"></p>
+                                <progress id = "flavor_progress" class = "progress" ></progress>
+                            </div>
+                        </div>
+                        
+                        <div id = "message">
+                            <p> you: &nbsp;</p>
+                            <p id = "msgtext"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <audio id = "crunch" src = "assets/crunch.mp3"> </audio>
+            <audio id = "crunchsound" src = "assets/crunch.mp3"> </audio>
 
             <audio id = "boop" src = "assets/boop.mp3"> </audio>
 
             <audio id = "music" src = "assets/music.mp3" loop> </audio>
 
+            <audio id = "swoosh" src = "assets/swoosh.mp3"> </audio>
+
+            <audio id = "click" src = "assets/click.mp3"> </audio>
+
         </div>
 
         <div class = "bottom-container"> 
 
-            <button class = "receiptbutton" onclick = "showConsumed()"> <img src="assets/receipt.png" class="receipt-icon"> view receipt </button>
+            <button class = "receiptbutton" onclick = "showConsumed()"> <img src="assets/receipt.png" class="receipt-icon"> toggle receipt </button>
     
             <div class = "footer">
                 <p> ✉️ message : this is still an early version of the project ! </p>
@@ -91,6 +146,10 @@
             </div>
             
         </div>
+
+        
+
+        
 
         <script src = "script.js"> </script>
 
