@@ -442,7 +442,6 @@ function bakeCookie() {
     
     // Show the oven
     ovencontainer.style.display = "block";
-    baking.play();
     
     // After 3 seconds
     setTimeout(function() {
