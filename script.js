@@ -29,7 +29,7 @@ var timerInterval;
 document.addEventListener('DOMContentLoaded', function() {
     seeds.textContent = 20;
     fullnessamt.textContent = "100% FULLNESS";
-    fullness = 10;
+    fullness = 100;
     startTimer();
 });
 
