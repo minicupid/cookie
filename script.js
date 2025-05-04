@@ -129,11 +129,13 @@ function showSlides(n) {
 
     const signature = document.querySelector("#signature");
     if (slideIndex === 1) {
-        prevBtn.classList.add("hide");
-        nextBtn.classList.add("hide");
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
         signature.classList.remove("hide");
         signature.classList.add("show");
     } else {
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
         signature.classList.remove("show");
         signature.classList.add("hide");
     }
@@ -466,7 +468,7 @@ function addonRate(baseValue, addonId) {
         const addon = addOns[addonId];
         if (addon) {
             // base value + addon price
-            return baseValue + (addon.price) * 1.3; // 1.3 is the rate of increase
+            return baseValue + (addon.price) * 1.5; // 1.3 is the rate of increase
         }
     }
     return baseValue;
@@ -619,22 +621,23 @@ function generator() {
     var newSeeds = currentSeeds + parseInt(sellval.textContent);
 
     coin.play();
-    
-    // update seeds amt
-    seeds.textContent = Math.max(0, newSeeds); // caps seeds at 0 + returns larger #
+        
+        // update seeds amt
+        seeds.textContent = Math.max(0, newSeeds); // caps seeds at 0 + returns larger #
 
-    // add notif
-    const newNotif = document.createElement("div");
-    newNotif.className = "notif";
-    newNotif.innerHTML = `
-        <div class="notif-text">
-            <p>sold cookie for ${sellval.textContent} seeds </p>
-        </div>`;
-    notifContainer.insertBefore(newNotif, notifContainer.firstChild);
-    notifContainer.scrollTop = 0;
+        // add notif
+        const newNotif = document.createElement("div");
+        newNotif.className = "notif";
+        newNotif.innerHTML = `
+            <div class="notif-text">
+                <p>sold cookie for ${sellval.textContent} seeds </p>
+            </div>`;
+        notifContainer.insertBefore(newNotif, notifContainer.firstChild);
+        notifContainer.scrollTop = 0;
     });
 
     // ========= eat cookie ==============
+    
     document.getElementById("eat").addEventListener("click", function() {
     var eatval = document.getElementById("eat_value");
     var currentFullness = parseInt(fullnessamt.textContent);
