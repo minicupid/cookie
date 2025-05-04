@@ -2,78 +2,312 @@
     <head>
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width=device-width, initial-scale = 1.0" />
-        <title> perfect cookie </title>
+        <title> the cookie van </title>
         <link rel = "stylesheet" href = "style.css">
         <link rel = "stylesheet" href = "https://use.typekit.net/tzs8vcb.css"> <!-- font-family: "hwt-mardell", sans-serif; -->
         <link rel = "icon" href = "assets/choco.png">
-        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Darumadrop+One&display=swap" rel="stylesheet">
 
     </head>
     <body>
 
+        <div id = intro>
+            <div id = "intro-cont">
+                <h2> click on van to enter </h2>
+                <div id = "intro-inner">
+                    <img draggable = "false" id = "cookievan" src = "assets/cookievan.gif">
+                    <button id = "directions" onclick = "directions()"> how to play? </button>
+                </div>
+            </div>
+            <div id = "howtoplay">
+                <img draggable = "false" id = "manual" src = "assets/manual.png">
+                <div id = "manual-text">
+                    <p> ⟡ as a cookie van employee, your job is to bake cookies and sell them to customers. </p>
+                    <p> ⟡ after the cookie is baked, the cookie's <u>aroma, crunch, and flavor</u> will be <b>randomized</b>. </p>
+                    <p> ⟡ these values determine how good the cookie is. you can <u>increase</u> them by applying <u>add-ons</u>. </p>
+                    <p> ⟡ based on the cookie's quality, determine whether to <b>sell</b> it for more seed, or <b>eat</b> it for energy. </p>
+                    <p> ⟡ when a cookie's <b>quality is lower than 5</b>, selling or eating will have <b>negative effects</b>. </p>
+                    <p> ⟡ your goal is to keep cotton satisfied for as long as possible. good luck! </p>
+                </div>
+            </div>
+        </div>
+
+        <div id = "backgrounddots"> </div>
+
+        <div id = "gameover">
+            <div id = "gameover-cont">
+                <h2> GAME OVER </h2>
+                <div id = "gameover-inner">
+                    <p> cotton has no more energy. prioritize its needs next time! </p>
+                    <p> worked for : <span id = "gameTime"> 00:00 </span> </p>
+                    <button id = "restart" onclick = "restart()"> restart </button>
+                </div>
+            </div>
+            <img draggable = "false" id = "gameover-img" src = "assets/gameover.gif">
+        </div>
+
+        <div id = "toolbar">
+            <input type="range" id="volume-slider">
+        </div>
+
+        <div id = "sidebar">
+            <div id = "tablet">
+                <div id = "tablet-inner">
+                    <div id = "tablet-top">
+                        cotton's tablet
+                        <img draggable = "false" id = "battery-img" src = "assets/battery.png">
+                    </div>
+                    <div id = "notif-cont">
+                        <div class = "notif">
+                            <div class = "notif-text"> 
+                                - end -
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id = "calculator">
+                        <h2 id = "calc-title"> cookie add-ons cart </h2>
+                        <div id="calc-container">
+                            <div class = "addon-item" id = "selectedaroma">
+                                <div class = "addon-item-img">
+                                    <img draggable = "false" id = "aromaimg" src = "">
+                                </div>
+                                <div class = "addon-item-price" data-addon-id = "aroma"> 🌸
+                                </div>
+                            </div>
+                            <div class = "addon-item" id = "selectedcrunch">
+                                <div class = "addon-item-img">
+                                    <img draggable = "false" id = "crunchimg" src = "">
+                                </div>
+                                <div class = "addon-item-price" data-addon-id = "crunch"> 🔈
+                                </div>
+                            </div>
+                            <div class = "addon-item" id = "selectedflavor"> 
+                                <div class = "addon-item-img">
+                                    <img draggable = "false" id = "flavorimg" src = "">
+                                </div>
+                                <div class = "addon-item-price" data-addon-id = "flavor"> 🍫
+                                </div>
+                            </div>
+                            <div id = "addon-total">
+                                =&nbsp
+                                <div id = "total-price"> </div>
+                                <img draggable = "false" class = "seed-img" src = "assets/seed.png">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div id = "needs">
+                <div id = "seeds-info">
+                    <img draggable = "false" class = "needs-img" src = "assets/seed.png">
+                    <p id = "seeds-amt"> </p>
+                </div>
+                <div id = "hunger-info">
+                    <img draggable = "false" class = "needs-img" src = "assets/hunger.png">
+                    <p id = "hunger-amt"> </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class = "bottom-container"> 
+    
+            <div class = "footer">
+                <p> ✉️ site status : working on sidebar and story intro cutscene </p>
+                <button class = "okbutton" onclick = "okbutton ()"> ok :] </button>
+            </div>
+            
+        </div>
+        
         <div class = "container">
 
             <div class = "header">
 
                 <img 
                 draggable = "false"
-                src = "assets/cafeheader.jpg" alt = "cookie header">
+                src = "assets/header2.gif" alt = "cookie header">
 
-                <div class = "title">
-                    <h1> perfect cookie </h1>
-                </div>
-                <div class = "subtitle">
-                    <p> enjoy these freshly baked cookies. your satisfaction is not guaranteed! </p>
+                <div class = "subtitle"> ♡ cotton : &nbsp;
+                    <p id = "dialogue"> the cookie van is open for business! </p>
                 </div>
 
             </div>
 
             <div class = "menu">
-                <h2> pick a cookie to munch on. </h2>
-                <div class = "item-container">
+                <h2 id = "sectiontitle"> pick a cookie to munch on. </h2>
 
-                    <div class = "item">
-                        <div class = "box"> <img draggable = "false" src = "assets/choco.png"> </div>
-                        <div class="text-container"> 
-                            <div class = "name"> choco chip </div>
-                            <div class = "desc"> a suspiciously smooth chocolate chip cookie with extra choco chunks. </div>
+                <div id = "section1"> <!--- ======== BASE ======= -->
+
+                    <div class = "item-container">
+
+                        <div class = "item">
+                            <div class = "box"> <img draggable = "false" src = "assets/dough/chocolatechunk.png"> </div>
+                            <div class="text-container"> 
+                                <div class = "name"> chunk o' double choco</div>
+                                <div class = "desc"> a chewy textured cookie with a rich flavor and chocolate chips. </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class = "item">
-                        <div class = "box"> <img draggable = "false" src="assets/sugar.png"> </div>
-                        <div class="text-container"> 
-                            <div class = "name"> sugar frost </div>
-                            <div class = "desc"> soft and sweet, this cookie will melt in your mouth after every bite. </div>
-                        </div>    
-                    </div>
+                        <div class = "item">
+                            <div class = "box"> <img draggable = "false" src="assets/dough/pecansugar.png"> </div>
+                            <div class="text-container"> 
+                                <div class = "name"> brown sugar with pecan </div>
+                                <div class = "desc"> perfect for grannies, this cookie delivers fresh pecans to munch on. </div>
+                            </div>    
+                        </div>
 
-                    <div class = "item">
-                        <div class = "box"> <img draggable = "false" src="assets/oatmeal.png"> </div>
-                        <div class="text-container"> 
-                            <div class = "name"> oatmeal crunch </div>
-                            <div class = "desc"> a lighter and healthier option that leaves you satisfied just as equally. </div>
+                        <div class = "item">
+                            <div class = "box"> <img draggable = "false" src="assets/dough/softvanilla.png"> </div>
+                            <div class="text-container"> 
+                                <div class = "name"> soft vanilla and chocolate </div>
+                                <div class = "desc"> chocolate flavor with no chocolate chips? this might be a scam... </div>
+                            </div>
+                        </div>
+
+                        <div class = "item">
+                            <div class = "box"> <img draggable = "false" src="assets/dough/cinnamon.png"> </div>
+                            <div class="text-container"> 
+                                <div class = "name"> vegan salty cinnamon </div>
+                                <div class = "desc"> dairy free and a healthier option for those who still want a sweet treat. </div>
+                            </div>
                         </div>
 
                     </div>
 
                 </div>
-                
-                
-            </div>
 
-            <div class = "purchase">
-                <div class = "thankyou"></div>
+                <div id = "section2"> <!--- ======== AROMA ======= -->
 
-                <div class = "cookieDisplay">
-                    <div class = "bagcontainer">
-                        <img draggable = "false" src = "assets/cookiebag.gif" loop >
+                    <div class = "addon-container">
+
+                        <div class = "addon" class = "aromaAddon" id = "jar">
+                            <div class = "addon-img" id = "jarimg"> <img draggable = "false" src = "assets/add-ons/jar.png"> </div>
+                            <div class = "info-container">
+                                <div class = "name" class = "name2"> infuse in magic jar <br> ──── ୨୧ ──── </div>
+                                <div class = "info">
+                                    <div class = "addon-desc"> sold from a cotton-candy skies collector. there's not a lot of cloud in it... </div>
+                                    <div class = "significance"> <img class = "effect-img" draggable = "false" src = "assets/add-ons/effect.png"> low effect </div>
+                                    <div class = "price"> <img class = "seed-img" draggable = "false" src = "assets/seed.png"> costs 1 seed </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = "addon" class = "aromaAddon" id = "mist">
+                            <div class = "addon-img" id = "mistimg"> <img draggable = "false" src = "assets/add-ons/mist.png"> </div>
+                            <div class = "info-container">
+                                <div class = "name" class = "name2"> spray mystic mist <br> ──── ୨୧ ──── </div>
+                                <div class = "info">
+                                    <div class = "addon-desc"> this edible perfume smells like warm cookies that came right out the oven! </div>
+                                    <div class = "significance"> <img class = "effect-img" draggable = "false" src = "assets/add-ons/effect.png"> significant effect </div>
+                                    <div class = "price"> <img class = "seed-img" draggable = "false" src = "assets/seed.png"> costs 3 seeds </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <img draggable = "false" class = "cookieimg" src = "" >
-                </div>
-            </div>
 
-<!-- stats ========== -->
+                    <div class = "skipbutton">
+                        <button class = "skip" onclick = "skip()"> skip </button>
+                    </div>
+
+                </div>
+
+                <div id = "section3"> <!--- ======== CRUNCH ======= -->
+                    <div class = "addon-container">
+
+
+                        <div class = "addon" class = "crunchAddon" id = "heat">
+                            <div class = "addon-img" id = "heatimg"> <img draggable = "false" src = "assets/add-ons/heat.png"> </div>
+                            <div class = "info-container">
+                                <div class = "name" class = "name3"> use high temp <br> ──── ୨୧ ────  </div>
+                                <div class = "info">
+                                    <div class = "addon-desc"> increase the temperature just enough for a softer cookie with a crispy exterior. </div>
+                                    <div class = "significance"> <img class = "effect-img" draggable = "false" src = "assets/add-ons/effect.png"> low effect </div>
+                                    <div class = "price"> <img class = "seed-img" draggable = "false" src = "assets/seed.png"> costs 1 seed </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class = "addon" class = "crunchAddon" id = "chill">
+                            <div class = "addon-img" id = "chillimg"> <img draggable = "false" src = "assets/add-ons/chill.png"> </div>
+                            <div class = "info-container">
+                                <div class = "name" class = "name3"> chill dough <br> ──── ୨୧ ──── </div>
+                                <div class = "info">
+                                    <div class = "addon-desc"> leave the dough in the cooler overnight for a nicer rise when it bakes. </div>
+                                    <div class = "significance"> <img class = "effect-img" draggable = "false" src = "assets/add-ons/effect.png"> effect </div>
+                                    <div class = "price"> <img class = "seed-img" draggable = "false" src = "assets/seed.png"> costs 2 seeds </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class = "skipbutton">
+                        <button class = "skip" onclick = "skip()"> skip </button>
+                    </div>
+
+                </div>
+
+                <div id = "section4"> <!--- ======= FLAVOR ======== -->
+                    <div class = "addon-container">
+
+                        <div class = "addon" class = "flavorAddon" id = "filling">
+                            <div class = "addon-img" id = "fillingimg"> <img draggable = "false" src = "assets/add-ons/filling.png"> </div>
+                            <div class = "info-container">
+                                <div class = "name" class = "name4"> add thin filling <br> ──── ୨୧ ──── </div>
+                                <div class = "info">
+                                    <div class = "addon-desc"> add some velvety smooth icing when there's too much cookie in a cookie. </div>
+                                    <div class = "significance"> <img class = "effect-img" draggable = "false" src = "assets/add-ons/effect.png"> medium effect </div>
+                                    <div class = "price"> <img class = "seed-img" draggable = "false" src = "assets/seed.png"> costs 2 seeds </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = "addon" class = "flavorAddon" id = "dust">
+                            <div class = "addon-img" id = "dustimg"> <img draggable = "false" src = "assets/add-ons/dust.png"> </div>
+                            <div class = "info-container">
+                                <div class = "name" class = "name4"> sprinkle fairy dust <br> ──── ୨୧ ──── </div>
+                                <div class = "info">
+                                    <div class = "addon-desc"> iridescent powder with wonderful pops of flavor. also causes hallucinations, but hey, things happen! </div>
+                                    <div class = "significance"> <img class = "effect-img" draggable = "false" src = "assets/add-ons/effect.png"> significant effect </div>
+                                    <div class = "price"> <img class = "seed-img" draggable = "false" src = "assets/seed.png"> costs 3 seeds </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <button id = "bake-btn" onclick = "bake()"> start baking </button>
+
+                </div>
+
+                <img id = "signature" draggable = "false" src = "assets/signature.png"> </div>
+
+                <div class = "navigation-buttons" >
+                    <button class="nav-btn" id = "previous" onclick = "plusSlides(-1)">← Prev</button>
+                    <button class="nav-btn" id = "next" onclick = "plusSlides(1)"> Skip →</button>
+                </div>
+
+                <div class = "purchase">
+                    <div class = "thankyou"></div>
+                    <div class = "bakingDisplay">
+                        <div class = "ovencontainer">
+                            <img draggable = "false" src = "assets/oven.gif" loop >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- stats ========== -->
 
             <div class = "stats">
 
@@ -82,19 +316,21 @@
     
                     <div class = "stats-container">
                         <div class = "receipt-top">
-                            <p> ******** </p>
-                            <div class = "return"> back </div>
+                            <p> **** </p>
+                            <div id = "result"> </div>
+                            <p> **** </p>
                         </div>
                         
                         <div class = "receipt-middle">
-                            <div id = "cookiename">
-                                <p> cookie : &nbsp;</p>
-                                <p id = "cookiename_value"></p>
-                            </div>
                             <div id = "satisfaction">
-                                <p> satisfaction : &nbsp;</p>
+                                <p> cookie quality : &nbsp;</p>
                                 <p id = "satisfaction_value"></p>
                                 <p> /10  </p>
+                            </div>
+                            <div id = "difference">
+                                <p> without add-ons : &nbsp;</p>
+                                <p id = "difference_value"></p>
+                                <p> &nbsp;/10 </p>
                             </div>
                         </div>
     
@@ -115,14 +351,30 @@
                                 <progress id = "flavor_progress" class = "progress" ></progress>
                             </div>
                         </div>
+
+                        <div id = "decision">
+                            <div class = return id = "sell">
+                                <p> sell for &nbsp;</p>
+                                <p id = "sell_value"></p>
+                            </div>
+                            <div class = return id = "eat">
+                                <p> eat for &nbsp;</p>
+                                <p id = "eat_value"></p>
+                            </div>
+                        </div>
+
                         
                         <div id = "message">
-                            <p> you: &nbsp;</p>
                             <p id = "msgtext"></p>
                         </div>
                     </div>
                 </div>
+                
             </div>
+
+
+
+
             
             <audio id = "crunchsound" src = "assets/crunch.mp3"> </audio>
 
@@ -134,23 +386,24 @@
 
             <audio id = "click" src = "assets/click.mp3"> </audio>
 
+            <audio id = "coin" src = "assets/coin.wav"> </audio>
+
+            <audio id = "error" src = "assets/error.mp3"> </audio>
+
+            <audio id = "paper" src = "assets/paper.wav"> </audio>
+
+            <audio id = "bell" src = "assets/bell.wav"> </audio>
+
+            <audio id = "ding" src = "assets/ding.wav"> </audio>
+
+            <audio id = "baking" src = "assets/baking.wav"> </audio>
+
         </div>
 
-        <div class = "bottom-container"> 
+        <script>
 
-            <button class = "receiptbutton" onclick = "showConsumed()"> <img src="assets/receipt.png" class="receipt-icon"> toggle receipt </button>
-    
-            <div class = "footer">
-                <p> ✉️ message : this is still an early version of the project ! </p>
-                <button class = "okbutton" onclick = "hideShow ()"> ok :] </button>
-            </div>
-            
-        </div>
-
+        </script>
         
-
-        
-
         <script src = "script.js"> </script>
 
     </body>
