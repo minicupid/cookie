@@ -1,4 +1,3 @@
-
 var crunch = document.getElementById("crunchsound");
 var music = document.getElementById("music");
 var swoosh = document.getElementById("swoosh");
@@ -22,12 +21,16 @@ var nextBtn = document.querySelector("#next");
 var prevBtn = document.querySelector("#previous");
 var seeds = document.getElementById("seeds-amt");
 var fullnessamt = document.getElementById("hunger-amt");
+var gameTimeElement = document.getElementById("gameTime");
+var seconds = 0;
+var timerInterval;
 
 // INITIALIZE VALUES
 document.addEventListener('DOMContentLoaded', function() {
     seeds.textContent = 20;
     fullnessamt.textContent = "100% FULLNESS";
-    fullness = 100;
+    fullness = 10;
+    startTimer();
 });
 
 let volume = document.getElementById('volume-slider');
@@ -463,7 +466,7 @@ function addonRate(baseValue, addonId) {
         const addon = addOns[addonId];
         if (addon) {
             // base value + addon price
-            return baseValue + (addon.price);
+            return baseValue + (addon.price) * 1.3; // 1.3 is the rate of increase
         }
     }
     return baseValue;
@@ -492,7 +495,7 @@ function generator() {
     var max_value = 10;
     
     // calculate base values (before addonRate)
-    let baseFlavor = Math.floor(Math.random() * (max_value + 1)); // random between 0 and 7 [ + 1 is to include 0 ]
+    let baseFlavor = Math.floor(Math.random() * (max_value + 1)); // [ + 1 is to include 0 ]
     let baseCrunch = Math.floor(Math.random() * (max_value + 1));
     let baseAroma = Math.floor(Math.random() * (max_value + 1));
     
@@ -704,6 +707,7 @@ function resetCookie() {
 
 function gameOver() {
     GAMEOVER.style.display = "block";
+    stopTimer();
 }
 
 function restart() {
@@ -736,4 +740,16 @@ function directions() {
 function okbutton() {
     document.querySelector(".bottom-container").style.display = "none";
     boop.play();
+}
+
+function startTimer() {
+    seconds = 0;
+    timerInterval = setInterval(function() {
+        seconds++;
+        gameTimeElement.textContent = seconds + " seconds";
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
 }

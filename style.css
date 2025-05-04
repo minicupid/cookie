@@ -871,7 +871,7 @@ body {
     font-family: monospace;
     text-align: left;
     letter-spacing: 1vw;
-    color: #ffffff;
+    color: #fff;
 }
 
 #result {
@@ -880,7 +880,7 @@ body {
     font-family: monospace;
     text-align: left;
     letter-spacing: 1vw;
-    color: #fff;
+    color: #bad2f0;
 }
 
 .receipt-middle {
