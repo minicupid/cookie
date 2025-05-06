@@ -2,6 +2,7 @@ var crunch = document.getElementById("crunchsound");
 var music = document.getElementById("music");
 var swoosh = document.getElementById("swoosh");
 var click = document.getElementById("click");
+click.volume = 0.7;
 var coin = document.getElementById("coin");
 var error = document.getElementById("error");
 var bell = document.getElementById("bell");
@@ -32,13 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
     seeds.textContent = 20;
     fullnessamt.textContent = "100% FULLNESS";
     fullness = 100;
-    startTimer();
+    document.body.style.overflow = "hidden";
 });
-
-let volume = document.getElementById('volume-slider');
-volume.addEventListener("change", function(e) {
-    music.volume = e.currentTarget.value / 100;
-})
 
 
 const notifContainer = document.getElementById("notif-cont");
@@ -121,8 +117,8 @@ function showSlides(n) {
     
     const sectionTitles = [
         "[ 1 ] base : dough",
-        "[ 2 ] add-on : scent",
-        "[ 3 ] add-on : crunchiness",
+        "[ 2 ] add-on : aroma",
+        "[ 3 ] add-on : crunch",
         "[ 4 ] add-on : flavor"
     ];
     document.getElementById("sectiontitle").textContent = sectionTitles[slideIndex-1];
@@ -175,10 +171,20 @@ function startHunger() {
         if (fullness > 0) {
             fullness--;
             fullnessamt.textContent = fullness + "% FULLNESS";
+            if (fullness <= 30) {
+                // highlight needs
+                const needs = document.getElementById("needs");
+                setTimeout(() => {
+                    needs.classList.add("wiggle");
+                    setTimeout(() => {
+                        needs.classList.remove("wiggle");
+                    }, 1000); // wait for end
+                }, 1000);
+            }
         } else {
             gameOver();
         }
-    }, 1500);
+    }, 1800);
 }
 
 // =============================== DOUGH CLICK LISTENER ===============================
@@ -489,6 +495,7 @@ function generator() {
     var aroma_progress = stats.querySelector("#aroma_progress");
 
     ding.play();
+    ding.volume = 0.4;
     
     // set extreme values
     flavor_progress.max = 10;
@@ -601,17 +608,26 @@ function generator() {
     function updateDecisionValues(points) {
     var sellval = document.getElementById("sell_value");
     var eatval = document.getElementById("eat_value");
+    var sellBtn = document.getElementById("sell");
+    var currentSeeds = parseInt(seeds.textContent);
 
-    if (points >= 5) {
-        sellval.textContent = points;
-        eatval.textContent = Math.floor(points * 1.5) + "%";
-    } else if (points >= 10) {
+    if (points >= 10) {
+        sellBtn.classList.remove("disabled");
         sellval.textContent = 15;
         eatval.textContent = Math.floor(15 * 1.5) + "%";
+    } else if (points >= 5) {
+        sellBtn.classList.remove("disabled");
+        sellval.textContent = points;
+        eatval.textContent = Math.floor(points * 1.5) + "%";
     } else {
         sellval.textContent = -5 - points;
         eatval.textContent = Math.floor((-5 - points) * 1.5) + "%";
-    }
+        // disable sell button ?
+        if (currentSeeds >= points) {
+            sellBtn.classList.remove("disabled");
+        } else {
+            sellBtn.classList.add("disabled");
+        }
     }
 
     // ========= sell cookie ==============
@@ -659,6 +675,7 @@ function generator() {
     notifContainer.insertBefore(newNotif, notifContainer.firstChild);
     notifContainer.scrollTop = 0;
     });
+}
 
 // return class =====================================================
 document.querySelectorAll("#decision .return").forEach(button => {
@@ -668,6 +685,7 @@ document.querySelectorAll("#decision .return").forEach(button => {
         resetCookie();
         slideIndex = 1; // reset to first slide
         showSlides(slideIndex);
+        window.scrollTo(0, document.body.scrollHeight);
         clearAddonImages();
 
         // dialogue randomizer
@@ -733,14 +751,31 @@ document.getElementById("cookievan").addEventListener("click", function() {
         document.getElementById("intro").style.display = "none";
         // start hunger countdown
         startHunger();
+        startTimer();
     }, 1000);
     bell.play();
+    document.body.style.overflow = "auto"; // restore scrolling
+
+    // highlight needs
+    const needs = document.getElementById("needs");
+    setTimeout(() => {
+        needs.classList.add("wiggle");
+        setTimeout(() => {
+            needs.classList.remove("wiggle");
+        }, 1000); // wait for end
+    }, 1000); // wait to start
 });
 
 function directions() {
     document.getElementById("howtoplay").style.display = "block";
     document.getElementById("directions").style.display = "none";
     paper.play();
+}
+
+function manual() {
+    document.getElementById("manualdiv").style.display = "none";
+    document.getElementById("manual2").style.display = "block";
+    
 }
 
 function okbutton() {
@@ -753,6 +788,7 @@ function startTimer() {
     timerInterval = setInterval(function() {
         seconds++;
         gameTimeElement.textContent = seconds + " seconds";
+        document.getElementById("elapsed").textContent = "time elapsed: " + Math.floor(seconds) + " seconds";
     }, 1000);
 }
 

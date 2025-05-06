@@ -14,23 +14,26 @@
     </head>
     <body>
 
+        <div id = "manualdiv">
+            <img draggable = "false" id = "manual2" src = "assets/manual2.png">
+            <button id = "manual-btn" onclick = "manual()"> i read the manual </button>
+        </div>
         <div id = intro>
+            <button id = "directions" onclick = "directions()"> ? </button>
             <div id = "intro-cont">
                 <h2> click on van to enter </h2>
                 <div id = "intro-inner">
                     <img draggable = "false" id = "cookievan" src = "assets/cookievan.gif">
-                    <button id = "directions" onclick = "directions()"> how to play? </button>
                 </div>
             </div>
             <div id = "howtoplay">
                 <img draggable = "false" id = "manual" src = "assets/manual.png">
                 <div id = "manual-text">
-                    <p> ⟡ bake cookies and sell them to customers while managing cotton's hunger! </p>
-                    <p> ⟡ after the cookie is baked, the cookie's <u>aroma, crunch, and flavor</u> will be <b>randomized</b>. </p>
-                    <p> ⟡ these values determine the cookie quality. you can <u>increase</u> them by applying <u>add-ons</u>. </p>
-                    <p> ⟡ determine whether to <b>sell</b> it for more seed, or <b>eat</b> it for energy. </p>
-                    <p> ⟡ cookies with a <b>quality lower than 5</b> result in <b>loss of seeds or fullness</b>. </p>
-                    <p> ⟡ your goal is to work here for long as possible through risk and quick decision making. good luck! </p>
+                    <p> - cotton's hunger decreases over time. keep him fed. </p>
+                    <p> - a cookie's quality is randomized by <u>aroma, crunch, and flavor</u>. </p>
+                    <p> - <u>increase</u> them by buying <u>add-ons</u> with seeds. </p>
+                    <p> - <b>quality lower than 5</b> result in <b>negative choices</b>. </p>
+                    <p> - play until cotton is out of energy. </p>
                 </div>
             </div>
         </div>
@@ -50,7 +53,7 @@
         </div>
 
         <div id = "toolbar">
-            <input type="range" id="volume-slider">
+            <p id = "elapsed"> </p>
             <p id = "volume-text"> sound is recommended ♪ </p>
         </div>
 
