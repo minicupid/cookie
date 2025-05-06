@@ -34,6 +34,50 @@ document.addEventListener('DOMContentLoaded', function() {
     fullnessamt.textContent = "100% FULLNESS";
     fullness = 100;
     document.body.style.overflow = "hidden";
+
+    // ========= eat cookie ==============
+    document.getElementById("eat").addEventListener("click", function() {
+        var eatval = document.getElementById("eat_value");
+        var currentFullness = parseInt(fullnessamt.textContent);
+
+        crunchsound.play();
+        
+        // update fullness
+        fullness = Math.min(100, currentFullness + parseInt(eatval.textContent)); // caps fullness at 100 + returns smaller #
+        fullnessamt.textContent = fullness + "% FULLNESS";
+
+        // add notif
+        const newNotif = document.createElement("div");
+        newNotif.className = "notif";
+        newNotif.innerHTML = `
+            <div class="notif-text">
+                <p>ate cookie for ${eatval.textContent} fullness</p>
+            </div>`;
+        notifContainer.insertBefore(newNotif, notifContainer.firstChild);
+        notifContainer.scrollTop = 0;
+    });
+
+    // ========= sell cookie ==============
+    document.getElementById("sell").addEventListener("click", function() {
+        var sellval = document.getElementById("sell_value");
+        var currentSeeds = parseInt(seeds.textContent);
+        var newSeeds = currentSeeds + parseInt(sellval.textContent);
+
+        coin.play();
+            
+        // update seeds amt
+        seeds.textContent = Math.max(0, newSeeds); // caps seeds at 0 + returns larger #
+
+        // add notif
+        const newNotif = document.createElement("div");
+        newNotif.className = "notif";
+        newNotif.innerHTML = `
+            <div class="notif-text">
+                <p>sold cookie for ${sellval.textContent} seeds </p>
+            </div>`;
+        notifContainer.insertBefore(newNotif, notifContainer.firstChild);
+        notifContainer.scrollTop = 0;
+    });
 });
 
 
@@ -184,7 +228,7 @@ function startHunger() {
         } else {
             gameOver();
         }
-    }, 1800);
+    }, 1700);
 }
 
 // =============================== DOUGH CLICK LISTENER ===============================
@@ -629,52 +673,6 @@ function generator() {
             sellBtn.classList.add("disabled");
         }
     }
-
-    // ========= sell cookie ==============
-
-    document.getElementById("sell").addEventListener("click", function() {
-    var sellval = document.getElementById("sell_value");
-    var currentSeeds = parseInt(seeds.textContent);
-    var newSeeds = currentSeeds + parseInt(sellval.textContent);
-
-    coin.play();
-        
-        // update seeds amt
-        seeds.textContent = Math.max(0, newSeeds); // caps seeds at 0 + returns larger #
-
-        // add notif
-        const newNotif = document.createElement("div");
-        newNotif.className = "notif";
-        newNotif.innerHTML = `
-            <div class="notif-text">
-                <p>sold cookie for ${sellval.textContent} seeds </p>
-            </div>`;
-        notifContainer.insertBefore(newNotif, notifContainer.firstChild);
-        notifContainer.scrollTop = 0;
-    });
-
-    // ========= eat cookie ==============
-    
-    document.getElementById("eat").addEventListener("click", function() {
-    var eatval = document.getElementById("eat_value");
-    var currentFullness = parseInt(fullnessamt.textContent);
-
-    crunchsound.play();
-    
-    // update fullness
-    fullness = Math.min(100, currentFullness + parseInt(eatval.textContent)); // caps fullness at 100 + returns smaller #
-    fullnessamt.textContent = fullness + "% FULLNESS";
-
-    // add notif
-    const newNotif = document.createElement("div");
-    newNotif.className = "notif";
-    newNotif.innerHTML = `
-        <div class="notif-text">
-            <p>ate cookie for ${eatval.textContent} fullness</p>
-        </div>`;
-    notifContainer.insertBefore(newNotif, notifContainer.firstChild);
-    notifContainer.scrollTop = 0;
-    });
 }
 
 // return class =====================================================
