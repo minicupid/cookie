@@ -7,6 +7,7 @@ var error = document.getElementById("error");
 var bell = document.getElementById("bell");
 var baking = document.getElementById("baking");
 var ding = document.getElementById("ding");
+var gameoverfx = document.getElementById("gameoverfx");
 var menu = document.querySelector(".menu");
 var returnButton = document.querySelector("#decision .return");
 var purchase = document.querySelector(".purchase");
@@ -24,8 +25,9 @@ var fullnessamt = document.getElementById("hunger-amt");
 var gameTimeElement = document.getElementById("gameTime");
 var seconds = 0;
 var timerInterval;
+var hungerInterval;
 
-// INITIALIZE VALUES
+// SET VALS
 document.addEventListener('DOMContentLoaded', function() {
     seeds.textContent = 20;
     fullnessamt.textContent = "100% FULLNESS";
@@ -105,7 +107,7 @@ function showSlides(n) {
     if (n > sections.length) {slideIndex = 4} // stop at 4
     if (n < 1) {slideIndex = 1} // stop at 1
     
-    // First show the menu container
+    // first show the menu container
     menu.style.display = "block";
     
     // Hide all sections
@@ -169,7 +171,6 @@ function hideShow() {
 
 var fullness = 100;
 function startHunger() {
-    var hungerInterval;
     hungerInterval = setInterval(function() {
         if (fullness > 0) {
             fullness--;
@@ -710,7 +711,9 @@ function resetCookie() {
 
 function gameOver() {
     GAMEOVER.style.display = "block";
+    clearInterval(hungerInterval);   // stop hunger so gameover isnt recalled
     stopTimer();
+    gameoverfx.play();
 }
 
 function restart() {
