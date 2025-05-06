@@ -56,30 +56,29 @@ document.addEventListener('DOMContentLoaded', function() {
         notifContainer.insertBefore(newNotif, notifContainer.firstChild);
         notifContainer.scrollTop = 0;
     });
-
-    // ========= sell cookie ==============
-    document.getElementById("sell").addEventListener("click", function() {
-        var sellval = document.getElementById("sell_value");
-        var currentSeeds = parseInt(seeds.textContent);
-        var newSeeds = currentSeeds + parseInt(sellval.textContent);
-
-        coin.play();
-            
-        // update seeds amt
-        seeds.textContent = Math.max(0, newSeeds); // caps seeds at 0 + returns larger #
-
-        // add notif
-        const newNotif = document.createElement("div");
-        newNotif.className = "notif";
-        newNotif.innerHTML = `
-            <div class="notif-text">
-                <p>sold cookie for ${sellval.textContent} seeds </p>
-            </div>`;
-        notifContainer.insertBefore(newNotif, notifContainer.firstChild);
-        notifContainer.scrollTop = 0;
-    });
 });
 
+// ========= sell cookie ==============
+document.getElementById("sell").addEventListener("click", function() {
+    var sellval = document.getElementById("sell_value");
+    var currentSeeds = parseInt(seeds.textContent);
+    var newSeeds = currentSeeds + parseInt(sellval.textContent);
+
+    coin.play();
+            
+    // update seeds amt
+    seeds.textContent = Math.max(0, newSeeds); // caps seeds at 0 + returns larger #
+
+    // add notif
+    const newNotif = document.createElement("div");
+    newNotif.className = "notif";
+    newNotif.innerHTML = `
+        <div class="notif-text">
+            <p>sold cookie for ${sellval.textContent} seeds </p>
+        </div>`;
+    notifContainer.insertBefore(newNotif, notifContainer.firstChild);
+    notifContainer.scrollTop = 0;
+});
 
 const notifContainer = document.getElementById("notif-cont");
 
@@ -228,7 +227,7 @@ function startHunger() {
         } else {
             gameOver();
         }
-    }, 1700);
+    }, 1750);
 }
 
 // =============================== DOUGH CLICK LISTENER ===============================
